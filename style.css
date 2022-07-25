@@ -1,0 +1,57 @@
+.mice-stats {
+    max-height: 8em;
+    max-width: 10em;
+    cursor: default;
+    outline: 2px solid white;
+    background-color: rgb(162, 200, 213);
+
+}
+
+.cat-pic {
+    outline: 2px solid white;
+    background-color: aquamarine;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5em;
+    max-height: 55em;
+    max-width: 28em;
+
+
+}
+
+.cat-img {
+    cursor: pointer;
+    max-height: 55em;
+    max-width: 30em;
+
+
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-size: 180vh;
+    background-image: url(Screen\ Shot\ 2022-07-24\ at\ 11.43.52\ PM.png);
+}
+
+
+
+.quantities {
+    font-size: small;
+    max-height: 20em;
+    max-width: 20em;
+    margin-left: 80em;
+    background-color: rgb(162, 200, 213);
+    outline: 2px solid white;
+    cursor: default;
+}
+
+.store {
+    cursor: pointer;
+    max-height: 20em;
+    max-width: 20em;
+    justify-content: center;
+    margin-left: 3em;
+    outline: 2px solid white;
+    background-color: rgb(162, 200, 213);
+}
