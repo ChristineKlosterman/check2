@@ -2,12 +2,12 @@
 
 let clickUpgrades = {
     zoomies: {
-        price: 10,
+        price: 1,
         quantity: 0,
         multiplier: 1
     },
     Catnip: {
-        price: 50,
+        price: 5,
         quantity: 0,
         multiplier: 5
     }
@@ -15,12 +15,12 @@ let clickUpgrades = {
 
 let passiveUpgrades = {
     mouseTrap: {
-        price: 500,
+        price: 50,
         quantity: 0,
         multiplier: 20
     },
     catFriend: {
-        price: 100000,
+        price: 100,
         quantity: 0,
         multiplier: 100
     }
@@ -50,6 +50,10 @@ function catchMice() {
     drawMice()
 
 }
+
+
+
+
 //#region 
 function drawMouseTQuantity() {
 
@@ -90,7 +94,7 @@ function drawMouseTMult() {
 
     let template = ''
 
-    template += ` <span>Mouse Trap Quantity ${passiveUpgrades.mouseTrap.quantity}</span>`
+    template += ` <span>Passive Upgrades ${passiveUpgrades.quantity}</span>`
     let quaElm = document.getElementById('qua-stats')
     quaElm.innerHTML = template
 }
@@ -129,7 +133,7 @@ drawMouseTQuantity()
 
 function catchPassive() {
 
-    mice++
+
 
     for (let key in passiveUpgrades) {
         let passive = passiveUpgrades[key]
@@ -187,10 +191,44 @@ function drawPassiveUpgrades() {
 
 }
 
+function drawClickPower() {
+    // NOTE building a number up that represents how much click power i have, not actually adding it to my resources
+    let resource = 0
+    for (let key in clickUpgrades) {
+        let click = clickUpgrades[key]
+        console.log(click);
+        resource += click.multiplier * click.quantity
+
+
+        let template = ''
+
+        template += ` <span>Click Power : ${resource}</span>`
+        let quaElm = document.getElementById('MT-total')
+        quaElm.innerHTML = template
+    }
+    console.warn('you will ge this when you click', resource)
+}
 
 
 drawPassiveUpgrades()
 drawClickUpgrades()
+
+function drawPassivePower() {
+    let resource = 0
+    for (let key in passiveUpgrades) {
+        let click = passiveUpgrades[key]
+        console.log(click);
+        resource += click.multiplier * click.quantity
+        let template = ''
+
+        template += ` <span>Passive Power : ${resource}</span>`
+        let quaElm = document.getElementById('CF-total')
+        quaElm.innerHTML = template
+
+        console.warn(resource);
+    }
+
+}
 
 function buyUpgrades(key) {
     upgrade = clickUpgrades[key]
@@ -206,71 +244,71 @@ function buyUpgrades(key) {
         console.log(upgrade, 'just bought this');
         upgrade.price *= 2
     }
-    if (clickUpgrades.Catnip.quantity > 1) {
+    // if (clickUpgrades.Catnip.quantity > 1) {
 
 
-        drawCNTotal()
-    }
+    //     drawCNTotal()
+    // }
     drawMice()
     drawClickUpgrades()
     drawCNQuantity()
     drawZQuantity()
     drawCatFQuantity()
     drawMouseTQuantity()
-
-
+    drawClickPower()
 }
+
 
 //#region 
 
-let zoomiesMult = 0
-let catnipMult = 0
-let MouseTMult = 0
-let CatFriendMult = 0
-drawZTotal()
-drawCNTotal()
-drawMTTotal()
+// let zoomiesMult = 0
+// let catnipMult = 0
+// let MouseTMult = 0
+// let CatFriendMult = 0
+// drawZTotal()
+// drawCNTotal()
+// drawMTTotal()
 
 
-function drawZTotal() {
+// function drawZTotal() {
 
 
-    let miceElm = document.getElementById('Z-total')
-    miceElm.innerHTML = ` <span>Zoomies Multiplier: + ${zoomiesMult}</span>`
-    console.log();
+//     let miceElm = document.getElementById('Z-total')
+//     miceElm.innerHTML = ` <span>Zoomies Multiplier: + ${zoomiesMult}</span>`
+//     console.log();
 
-}
-function drawCNTotal() {
-    let miceElm = document.getElementById('CN-total')
-    miceElm.innerHTML = ` <span>Catnip Multiplier: + ${catnipMult}</span>`
-    console.log();
+// }
+// function drawCNTotal() {
+//     let miceElm = document.getElementById('CN-total')
+//     miceElm.innerHTML = ` <span>Catnip Multiplier: + ${catnipMult}</span>`
+//     console.log();
 
-}
-function drawMTTotal() {
-    let miceElm = document.getElementById('MT-total')
-    miceElm.innerHTML = ` <span>Mouse Trap Multiplier: + ${MouseTMult}</span>`
-    console.log();
+// }
+// function drawMTTotal() {
+//     let miceElm = document.getElementById('MT-total')
+//     miceElm.innerHTML = ` <span>Mouse Trap Multiplier: + ${MouseTMult}</span>`
+//     console.log();
 
 
-}
+// }
 
-function drawCFTotal() {
-    let miceElm = document.getElementById('CF-total')
-    miceElm.innerHTML = ` <span>Cat Friend Multiplier: + ${CatFriendMult}</span>`
-    console.log();
+// function drawCFTotal() {
+//     let miceElm = document.getElementById('CF-total')
+//     miceElm.innerHTML = ` <span>Cat Friend Multiplier: + ${CatFriendMult}</span>`
+//     console.log();
 
-}
+// }
 
-function zoomiesTotal() {
-    zoomiesMult++
+// function zoomiesTotal() {
+//     zoomiesMult++
 
-    for (let key in clickUpgrades) {
-        let click = clickUpgrades[key]
-        console.log(click);
-        zoomiesMult += click.multiplier * click.quantity
+//     for (let key in clickUpgrades) {
+//         let click = clickUpgrades[key]
+//         console.log(click);
+//         zoomiesMult += click.multiplier * click.quantity
 
-    }
-}
+//     }
+// }
 
 
 
@@ -288,7 +326,7 @@ function buyPassiveUpgrades(key) {
         if (buyPassiveUpgrades) {
 
             setInterval(catchPassive, 3000)
-
+            drawPassivePower()
 
         }
 
